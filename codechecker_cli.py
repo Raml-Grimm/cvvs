@@ -1,6 +1,6 @@
 
 from colorama import Fore, init
-import gateway1, gateway2, time, os
+import gateway1, time, os
 
 
 def CODECHECKER():
@@ -16,7 +16,6 @@ def CODECHECKER():
    ----------------------------------------
   
   {g}[1] {r} Gateway 1 CCN / CVV (Good on Amazon / Banned 5210 and 510)
-  {g}[2] {r} Gateway 2 CVV (5210/510)
   
   """.format(g=Fore.GREEN, r=Fore.LIGHTRED_EX, y=Fore.YELLOW)
     print(banner)
@@ -66,18 +65,6 @@ def CODECHECKER():
                 pass
             print()
             print(Fore.GREEN + "[+] " + Fore.RESET + "Done on Gateway 1")
-            print()
-
-        elif codechecker == "2":
-            print()
-            print(Fore.YELLOW + "[*] " + Fore.RESET + "Starting Gateway 2...")
-            print()
-            try:
-                gateway2.Checker()
-            except KeyboardInterrupt:
-                pass
-            print()
-            print(Fore.GREEN + "[+] " + Fore.RESET + "Done on Gateway 2")
             print()
 
 
