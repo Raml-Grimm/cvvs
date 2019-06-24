@@ -13,14 +13,15 @@ class Checker():
         self.range = []
         
         print("""
-        {re}             {g}_____________{re}
+        {re}             {g}________________________{re}
         {re}------------{g}|- {r}SAGEPAY GATEWAY -{g}|{re}------------
+        {re}             {g}________________________{re}
         """.format(g=Fore.GREEN, r=Fore.RED, re=Fore.RESET))
         
         print("\t            " + Fore.GREEN + "[CHOOSE CC TYPE]")
-        print(Fore.YELLOW + "------------------------------------------------------------")
+        print(Fore.YELLOW + "-----------------------------------------------------")
         print("{}[1] {}Visa\t{}[2] {}Visa Debit\t{}[3] {}MasterCard\t{}[4] {}MC Debit".format(Fore.RED, Fore.RESET,Fore.RED, Fore.RESET,Fore.RED, Fore.RESET,Fore.RED, Fore.RESET))
-        print(Fore.YELLOW + "------------------------------------------------------------\n" + Fore.RESET)
+        print(Fore.YELLOW + "-----------------------------------------------------\n" + Fore.RESET)
 
         cctype = input(Fore.BLUE + "[?] CCType > " + Fore.RESET)
         if cctype == '1':
