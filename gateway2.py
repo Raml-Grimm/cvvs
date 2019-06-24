@@ -14,9 +14,7 @@ class Checker():
         
         print("""
         {re}             {g}_____________{re}
-        {re}------------{g}[ {r}CODECHECKER {g}]{re}------------
-        {re}------------{g}|- {r}GATEWAY 2 -{g}|{re}------------
-        {re}---------------------------------------
+        {re}------------{g}|- {r}SAGEPAY GATEWAY -{g}|{re}------------
         """.format(g=Fore.GREEN, r=Fore.RED, re=Fore.RESET))
         
         print("\t            " + Fore.GREEN + "[CHOOSE CC TYPE]")
@@ -24,7 +22,7 @@ class Checker():
         print("{}[1] {}Visa\t{}[2] {}Visa Debit\t{}[3] {}MasterCard\t{}[4] {}MC Debit".format(Fore.RED, Fore.RESET,Fore.RED, Fore.RESET,Fore.RED, Fore.RESET,Fore.RED, Fore.RESET))
         print(Fore.YELLOW + "------------------------------------------------------------\n" + Fore.RESET)
 
-        cctype = input(Fore.BLUE + "[?] CCType >>> " + Fore.RESET)
+        cctype = input(Fore.BLUE + "[?] CCType > " + Fore.RESET)
         if cctype == '1':
             self.cc = "VISA"
         elif cctype == '2':
