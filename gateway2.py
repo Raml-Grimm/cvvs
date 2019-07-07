@@ -8,7 +8,7 @@ import time
 init()
 
 
-class Checker():
+class gateway2():
     def __init__(self):
         self.range = []
         
@@ -148,5 +148,3 @@ class Checker():
 [4] DEAD        ----    4355440407065326|04|2023|235 => Your card was declined.
 
 """
-
-Checker()
