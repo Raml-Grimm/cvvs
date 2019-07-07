@@ -8,7 +8,7 @@ import time
 init()
 
 
-class gateway2():
+class Merchanttwo():
     def __init__(self):
         self.range = []
         
